@@ -2,6 +2,7 @@ package com.madtutorial2.intents;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,8 +48,20 @@ public class FirstActivity extends AppCompatActivity {
                 if (num1.equals("") || num2.equals("")){
                     validate();
                 }else{
+
                     displayToast();
+//                    Intent intent = new Intent(FirstActivity.this, MainActivity.class);
+//                    Context context = getApplicationContext();
+//
+//                    CharSequence message = "You just clicked the OK button";
+//                    int duration = Toast.LENGTH_SHORT;
+//
+//                    Toast toast = Toast.makeText(context, message, duration);
+//                    toast.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 25);
+//
+//                    toast.show();
                     openSecondActivity();
+
                 }
             }
         });
@@ -67,9 +80,11 @@ public class FirstActivity extends AppCompatActivity {
         intent.putExtra("number2",fno2.getText().toString());
 
         startActivity(intent);
+        finish();
     }
 
-    private void displayToast() {
+    //Creating the custom toast instead of the default toast
+    private void displayToast(){
 
         //Creating the LayoutInflater instance
         LayoutInflater li = getLayoutInflater();
@@ -83,9 +98,13 @@ public class FirstActivity extends AppCompatActivity {
         toast.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 70);
         toast.setView(layout);//setting the view of custom toast layout
         toast.show();
+
+
     }
 
+    //Creating the custom toast validation
     private void validate(){
+
         //Creating the LayoutInflater instance
         LayoutInflater li = getLayoutInflater();
 
